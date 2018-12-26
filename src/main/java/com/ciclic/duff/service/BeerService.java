@@ -7,6 +7,10 @@ import com.ciclic.duff.repo.TemperatureRangeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class BeerService {
 
@@ -43,4 +47,24 @@ public class BeerService {
         return beerRepository.findAll();
     }
 
+    public Beer getTheBestBeer(int temperature) {
+        Iterable<Beer> beerIterable = lookup();
+        List<Beer> beers = (List<Beer>) beerIterable;
+        int minDiff = beers
+                .stream()
+                .mapToInt(b -> distance(temperature, b.getRange().getMedia()))
+                .min()
+                .orElse(-1);
+
+        return beers
+                .stream()
+                .filter(x -> distance(temperature, x.getRange().getMedia()) == minDiff)
+                .sorted(Comparator.comparing(Beer::getStyle))
+                .collect(Collectors.toList()).get(0);
+    }
+
+
+    private int distance(int temperature, int media) {
+        return Math.abs(media - temperature);
+    }
 }

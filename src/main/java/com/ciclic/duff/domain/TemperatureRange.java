@@ -47,6 +47,10 @@ public class TemperatureRange {
         this.max = max;
     }
 
+    public int getMedia() {
+        return (min + max) / 2;
+    }
+
     @Override
     public String toString() {
         return "TemperatureRange{" +
