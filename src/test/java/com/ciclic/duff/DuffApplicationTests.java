@@ -1,7 +1,7 @@
 package com.ciclic.duff;
 
-import com.ciclic.duff.model.Beer;
-import com.ciclic.duff.model.TemperatureRange;
+import com.ciclic.duff.domain.Beer;
+import com.ciclic.duff.domain.TemperatureRange;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

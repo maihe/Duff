@@ -1,6 +1,6 @@
 package com.ciclic.duff.controller;
 
-import com.ciclic.duff.model.Beer;
+import com.ciclic.duff.domain.Beer;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -8,12 +8,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.logging.Logger;
 
 @Controller
+@RequestMapping({"/", "/home"})
 public class DuffController {
 
     private static final Logger LOGGER = Logger.getLogger(DuffController.class.getName());
 
     @GetMapping("/duffs")
-    @ResponseBody
     public String index() {
         return "index";
     }
