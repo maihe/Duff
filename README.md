@@ -1,7 +1,7 @@
 # :beer: Desafio Ciclic - Backend Developer
 
 Aplicação Web REST / Restful para selecionar a cerveja perfeita dada a temperatura e sugerir uma lista de reprodução do Spotify como acompanhamento:
-Para completar esse desafio, decidi usar o Spring Boot, o H2 e o Heroku.Estas são três tecnologias sobre as quais tenho aprendido, mas que ainda não tiveram chance de se inscrever em um projeto. 
+Para completar esse desafio, decidi usar o Spring Boot, o H2 e o Heroku.Estas são três tecnologias sobre as quais tenho aprendido, mas que ainda não tiveram chance de usar em um projeto. 
 - Spring Boot
 Para construir a minha estrutura de projeto de forma simplificada e organizada, agilizando o desenvolvimento e aplicando um bom padrão ao projeto
 - H2
