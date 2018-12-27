@@ -29,24 +29,27 @@ public class DuffController {
         this.spotifyService = spotifyService;
     }
 
-    @GetMapping("/")
+    @GetMapping({"/", "/duff"})
     public String home() {
         return "Welcome to Duff Beer and Playlist selector! " +
-                "\n\n" +
-                "Go to /duff/{TEMPERATURE} to try it!";
+                "Go to /duff/{TEMPERATURE} to try it! or read https://github.com/maihe/Duff/blob/master/README.md";
     }
-
 
     @GetMapping("/duff/{temp}")
     // @HystrixCommand(fallbackMethod = "error")
     public ResponseEntity<BeerResponse> getHarmonization(@PathVariable Integer temp) {
         LOGGER.info("Get Harmonization");
+        ResponseEntity<BeerResponse> response;
         Beer beer = beerService.getTheBestBeer(temp);
-
         DuffPlaylist duffPlaylist = spotifyService.getDuffPlaylist(beer.getStyle());
         BeerResponse beerResponse = new BeerResponse(beer.getStyle(), duffPlaylist);
         LOGGER.info(beerResponse.toString());
-        return ResponseEntity.status(HttpStatus.OK).body(beerResponse);
+        if (duffPlaylist != null) {
+            response = ResponseEntity.status(HttpStatus.OK).body(beerResponse);
+        } else {
+            response = ResponseEntity.status(HttpStatus.NOT_FOUND).body(beerResponse);
+        }
+        return response;
     }
 
     public ResponseEntity<BeerResponse> error(Integer value) {
