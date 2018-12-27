@@ -1,11 +1,10 @@
 package com.ciclic.duff.controller;
 
 import com.ciclic.duff.domain.Beer;
-import com.ciclic.duff.domain.spotify.Playlist;
+import com.ciclic.duff.domain.spotify.DuffPlaylist;
 import com.ciclic.duff.domain.view.BeerResponse;
-import com.ciclic.duff.proxy.SpotifyProxy;
-import com.ciclic.duff.repo.BeerRepository;
 import com.ciclic.duff.service.BeerService;
+import com.ciclic.duff.service.SpotifyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,31 +20,33 @@ import java.util.logging.Logger;
 public class DuffController {
 
     private static final Logger LOGGER = Logger.getLogger(DuffController.class.getName());
-    private final BeerService service;
-    private final BeerRepository repository;
-
-    private SpotifyProxy proxy;
+    private final BeerService beerService;
+    private final SpotifyService spotifyService;
 
     @Autowired
-    public DuffController(BeerService service, BeerRepository repository) {
-        this.service = service;
-        this.repository = repository;
+    public DuffController(BeerService beerService, SpotifyService spotifyService) {
+        this.beerService = beerService;
+        this.spotifyService = spotifyService;
     }
 
     @GetMapping("/")
-    public String index() {
-        return "index";
+    public String home() {
+        return "Welcome to Duff Beer and Playlist selector! " +
+                "\n\n" +
+                "Go to /duff/{TEMPERATURE} to try it!";
     }
 
 
     @GetMapping("/duff/{temp}")
     // @HystrixCommand(fallbackMethod = "error")
-    public ResponseEntity<BeerResponse> getTheBestBeer(@PathVariable Integer temp) {
-        Beer beer = service.getTheBestBeer(temp);
-        String userID = "";
-        String playlistId = "";
-        Playlist playlist = proxy.getPlayListValue(userID, playlistId);
-        return ResponseEntity.status(HttpStatus.OK).body(new BeerResponse(beer.getStyle(), playlist));
+    public ResponseEntity<BeerResponse> getHarmonization(@PathVariable Integer temp) {
+        LOGGER.info("Get Harmonization");
+        Beer beer = beerService.getTheBestBeer(temp);
+
+        DuffPlaylist duffPlaylist = spotifyService.getDuffPlaylist(beer.getStyle());
+        BeerResponse beerResponse = new BeerResponse(beer.getStyle(), duffPlaylist);
+        LOGGER.info(beerResponse.toString());
+        return ResponseEntity.status(HttpStatus.OK).body(beerResponse);
     }
 
     public ResponseEntity<BeerResponse> error(Integer value) {

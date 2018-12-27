@@ -67,7 +67,15 @@
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 		</dependency>
-	</dependencies>
+
+        <!-- External lib -->
+        <dependency>
+            <groupId>se.michaelthelin.spotify</groupId>
+            <artifactId>spotify-web-api-java</artifactId>
+            <version>2.1.1</version>
+        </dependency>
+
+    </dependencies>
 
 	<!-- Build -->
 	<build>

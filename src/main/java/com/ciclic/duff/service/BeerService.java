@@ -9,10 +9,13 @@ import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 @Service
 public class BeerService {
+
+    private static final Logger LOGGER = Logger.getLogger(BeerService.class.getName());
 
     private BeerRepository beerRepository;
     private TemperatureRangeRepository rangeRepository;
@@ -48,6 +51,8 @@ public class BeerService {
     }
 
     public Beer getTheBestBeer(int temperature) {
+        LOGGER.info("Get The Best Beer");
+
         Iterable<Beer> beerIterable = lookup();
         List<Beer> beers = (List<Beer>) beerIterable;
         int minDiff = beers

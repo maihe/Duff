@@ -1,6 +1,6 @@
 package com.ciclic.duff.proxy;
 
-import com.ciclic.duff.domain.spotify.Playlist;
+import com.ciclic.duff.domain.spotify.DuffPlaylist;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -8,5 +8,5 @@ import org.springframework.web.bind.annotation.PathVariable;
 public interface SpotifyProxy {
 
     @GetMapping("/playlist/playlist/userid/{userId}/playlistid/{playlistId}")
-    Playlist getPlayListValue(@PathVariable("userId") String userId, @PathVariable("playlistId") String playlistId);
+    DuffPlaylist getPlayListValue(@PathVariable("userId") String userId, @PathVariable("playlistId") String playlistId);
 }
