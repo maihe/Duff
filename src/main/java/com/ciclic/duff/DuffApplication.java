@@ -1,6 +1,6 @@
 package com.ciclic.duff;
 
-import com.ciclic.duff.domain.Beer;
+import com.ciclic.duff.domain.crud.Beer;
 import com.ciclic.duff.service.BeerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;

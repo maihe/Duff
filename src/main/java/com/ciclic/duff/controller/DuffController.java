@@ -1,6 +1,6 @@
 package com.ciclic.duff.controller;
 
-import com.ciclic.duff.domain.Beer;
+import com.ciclic.duff.domain.crud.Beer;
 import com.ciclic.duff.domain.spotify.DuffPlaylist;
 import com.ciclic.duff.domain.view.BeerResponse;
 import com.ciclic.duff.service.BeerService;

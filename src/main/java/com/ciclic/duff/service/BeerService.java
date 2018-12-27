@@ -1,9 +1,9 @@
 package com.ciclic.duff.service;
 
-import com.ciclic.duff.domain.Beer;
-import com.ciclic.duff.domain.TemperatureRange;
-import com.ciclic.duff.repo.BeerRepository;
-import com.ciclic.duff.repo.TemperatureRangeRepository;
+import com.ciclic.duff.domain.crud.Beer;
+import com.ciclic.duff.domain.crud.TemperatureRange;
+import com.ciclic.duff.repository.BeerRepository;
+import com.ciclic.duff.repository.TemperatureRangeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

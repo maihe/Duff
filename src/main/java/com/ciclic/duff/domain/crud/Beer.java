@@ -1,4 +1,4 @@
-package com.ciclic.duff.domain;
+package com.ciclic.duff.domain.crud;
 
 import javax.persistence.*;
 import java.io.Serializable;
